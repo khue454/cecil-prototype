@@ -5,6 +5,8 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import svgToMiniDataURI from "mini-svg-data-uri";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import Dotenv from "dotenv-webpack";
+import path from "path";
 
 const config = (isEnvProduction: boolean): webpack.Configuration => {
   const getStyleLoaders = (preProcessor?: string) => {
@@ -74,6 +76,14 @@ const config = (isEnvProduction: boolean): webpack.Configuration => {
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
+      alias: {
+        "@Reducers": path.resolve(__dirname, "src/Reducers"),
+        "@Reducers/*": path.resolve(__dirname, "src/Reducers/*"),
+        "@Sagas": path.resolve(__dirname, "src/Sagas"),
+        "@Sagas/*": path.resolve(__dirname, "src/Sagas/*"),
+        "@Interfaces": path.resolve(__dirname, "src/Interfaces"),
+        "@Interfaces/*": path.resolve(__dirname, "src/Interfaces/*"),
+      }
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin({
@@ -82,6 +92,14 @@ const config = (isEnvProduction: boolean): webpack.Configuration => {
       new ESLintPlugin({
         extensions: ["js", "jsx", "ts", "tsx"],
       }),
+      new Dotenv({
+        path: `./.env.${process.env.NODE_ENV}`, // load this now instead of the ones in '.env'
+        safe: true, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
+        allowEmptyValues: true, // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
+        systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+        silent: true, // hide any errors
+        defaults: true // load '.env.defaults' as the default values if empty.
+      })
     ],
   }
 };

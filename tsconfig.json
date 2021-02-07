@@ -11,7 +11,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@Reducers": ["src/Reducers"],
+      "@Reducers/*": ["src/Reducers/*"],
+      "@Sagas": ["src/Sagas"],
+      "@Sagas/*": ["src/Sagas/*"],
+      "@Interfaces": ["src/Interfaces"],
+      "@Interfaces/*": ["src/Interfaces/*"],
+    }
   },
-  "include": ["src"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "build",
+    ".babelrc",
+  ],
 }

@@ -12,12 +12,16 @@
     "rules": {
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
-      "react/prop-types": "off"
+      "react/prop-types": "off",
+      "react/jsx-indent": [2, 4, { "checkAttributes": false }],
+      "react/jsx-indent-props": [2, 4]
     },
     "settings": {
-      "react": {
-        "pragma": "React",
-        "version": "detect"
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"]
+      },
+      "import/resolver": {
+        "typescript": {}
       }
     }
   }

@@ -16,34 +16,6 @@ const config: webpack.Configuration = merge(common(true), {
     chunkFilename: "static/js/[name].[contenthash:8].js",
     publicPath: "",
   },
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.css$/i,
-  //       use: [
-  //         {
-  //           loader: MiniCssExtractPlugin.loader,
-  //           // css is located in `static/css`, use '../../' to locate index.html folder
-  //           options: { publicPath: '../../' },
-  //         },
-  //         "css-loader",
-  //       ],
-  //     },
-  //     {
-  //       test: /\.s[ac]ss$/i,
-  //       use: [
-  //         {
-  //           loader: MiniCssExtractPlugin.loader,
-  //           // css is located in `static/css`, use '../../' to locate index.html folder
-  //           // in production `paths.publicUrlOrPath` can be a relative path
-  //           options: { publicPath: '../../' },
-  //         },
-  //         "css-loader",
-  //         "sass-loader",
-  //       ],
-  //     },
-  //   ],
-  // },
   optimization: {
     minimize: true,
     minimizer: [
